@@ -349,12 +349,15 @@ function findRouteByName (name: string, routes: NuxtPage[]): NuxtPage | undefine
 }
 
 function prepareRoutes (routes: NuxtPage[], parent?: NuxtPage, names = new Set<string>()) {
+  const nuxt = useNuxt();
+  const { routeNameSplitter } = nuxt.options.router;
+
   for (const route of routes) {
     // Remove -index
     if (route.name) {
       route.name = route.name
         .replace(/\/index$/, '')
-        .replace(/\//g, '-')
+        .replace(/\//g, routeNameSplitter || '-')
 
       if (names.has(route.name)) {
         const existingRoute = findRouteByName(route.name, routes)

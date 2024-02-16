@@ -26,6 +26,7 @@ export default defineUntypedSchema({
        * @default 'auto'
        */
       scrollBehaviorType: 'auto'
-    }
+    },
+    routeNameSplitter: '-'
   }
 })
